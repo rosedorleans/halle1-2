@@ -1,4 +1,15 @@
 
+// VARS
+
+
+$xs: 400px;
+$s: 580px;
+$m: 768px;
+$l: 960px;
+$xl: 1180px;
+
+
+
 html {
     height: 100%;
     width: 100%;
@@ -9,71 +20,368 @@ body {
     width: 100%;
     margin: 0;
 
-    .sidebar {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        z-index: 2;
-        background-color: #FFF;
+    .mobile-only {
+        display: block;
+        @media screen and (min-width: $xl) {
+            display: none;
+        }
+    }
+
+    .scroll {
+        overflow-y: scroll;
+        padding: 10px 15px 10px 10px;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background-color: #eee;
+            border-radius: 10px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #c2c2c2;
+            border-radius: 10px;
+        }
     }
 
     #sidebar {
-        width: 100%;
         position: absolute;
-        bottom: 10%;
+        bottom: 0;
         display: flex;
         justify-content: center;
-        background-color: #FFF;
+        width: 100%;
+
+        @media screen and (min-width: $xl) {
+            bottom: 10%;
+        }
 
         nav {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
+            gap: 15px;
+            width: 100%;
             background-color: #FFF;
-            border-radius: 20px;
-            width: 50%;
+            border-radius: 0;
             place-content: center;
-        }
-
-        #nav_home,
-        #nav_map {
-            padding: 10px;
-            opacity: .7;
+            z-index: 3;
             
-            &:hover {
-                opacity: 1;
-                cursor: pointer;
+            @media screen and (min-width: $xl) {
+                gap: 30px;
+                width: 50%;
+                border-radius: 20px;
+                box-shadow: 0 0 20px #c4c4c4;
+            }
+
+            #nav_home,
+            #nav_map {
+                padding: 10px;
+                opacity: .7;
+                
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+
+                &.active {
+                    svg,
+                    path {
+                        opacity: 1;
+                        fill: #FAD201;
+                        @media screen and (min-width: $xl) {
+                            fill: #000;
+                        }
+                    }
+                }
             }
         }
 
-        #icon_settings {
-            position: absolute;
-            bottom: 60px;
-        }
     }
 
     #page_home {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding-left: 130px;
-        font-family: T-Star Pro;
+        padding: 0 5%;
+        font-family: T-Star Pro, sans-serif;
         z-index: 1;
+
+        @media screen and (min-width: $xl) {
+            padding-left: 130px;
+        }
         
         h1 {
             margin: 10% 0 0 0;
-            font-size: 8vw;
+            font-size: 17vw;
             font-weight: 900;
             text-transform: uppercase;
+            text-align: center;
+            line-height: 100%;
+
+            @media screen and (min-width: $xl) {
+                font-size: 8vw;
+                text-align: initial;
+                line-height: initial;
+            }
         }
 
-        p {
+        h2 {
             margin: 0;
-            font-size: 1.5vw;
-            width: 70%;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 900;
+
+            @media screen and (min-width: $xl) {
+                display: none;
+            }
+        }
+
+        #blocks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            .block {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                gap: 10px;
+                margin: 10px;
+                padding: 10px 20px;
+                border-radius: 10px;
+
+                &#block_ambiantal {
+                    height: 50%;
+                    color: #FFF;
+                    background-color: #000;
+                    svg, 
+                    path {
+                        fill: #FFF;
+                    }
+                }
+
+                &#block_join {
+                    height: 30%;
+                    color: #000;
+                    background-color: #FAD201;
+                    svg, 
+                    path {
+                        fill: #000;
+                    }
+                }
+
+                &#block_companyList {
+                    height: 30%;
+                    color: #000;
+                    background-color: #FAD201;
+                    svg, 
+                    path {
+                        fill: #000;
+                    }
+                }
+
+                &#block_floors {
+                    height: 50%;
+                    color: #FFF;
+                    background-color: #000;
+                    svg, 
+                    path,
+                    circle {
+                        fill: #FFF;
+                    }
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #000;
+                }
+
+                .block-title {
+                    text-align: initial;
+
+                    h3 {
+                        margin: 0;
+                        font-size: 4.5vw;
+                        font-weight: 800;
+                    }
+
+                    h4 {
+                        margin: 5px 0;
+                        font-size: 3.5vw;
+                    }
+                }
+
+                .block-icon {
+                    display: flex;
+                    justify-content: end;
+                }
+            }
+        }
+    }
+
+    #page_ambiantal {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 5%;
+        font-family: T-Star Pro, sans-serif;
+        z-index: 1;
+
+        h2 {
+            margin: 10% 0 0 0;
+            font-size: 17vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 100%;
+
+            @media screen and (min-width: $xl) {
+                font-size: 8vw;
+                text-align: initial;
+                line-height: initial;
+            }
+        }
+
+        h3 {
+            font-weight: 900;
+        }
+
+        #ambiantal_steps {
+            display: flex;
+            justify-content: space-evenly;
+
+            div {
+                width: 35vw;
+                padding: 10px;
+                background-color: #eee;
+                border-radius: 10px;
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+
+        a {
+            width: 50%;
+            padding: 10px 20px;
+            align-self: center;
+            text-align: center;
+            color: #FFF;
+            background-color: #000;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+    }
+
+    #page_floors {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 5%;
+        font-family: T-Star Pro, sans-serif;
+        z-index: 1;
+
+        h2 {
+            margin: 10% 0 0 0;
+            font-size: 17vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 100%;
+
+            @media screen and (min-width: $xl) {
+                font-size: 8vw;
+                text-align: initial;
+                line-height: initial;
+            }
+        }
+
+        h3 {
+            font-weight: 900;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    #page_companyList {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 5%;
+        font-family: T-Star Pro, sans-serif;
+        z-index: 1;
+
+        h2 {
+            margin: 10% 0 0 0;
+            font-size: 17vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 100%;
+
+            @media screen and (min-width: $xl) {
+                font-size: 8vw;
+                text-align: initial;
+                line-height: initial;
+            }
+        }
+
+        .filters-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            #icon_search {
+                position: absolute;
+                top: 12px;
+                left: 10px;
+            }
+
+            input {
+                padding: 15px 20px 15px 40px;
+                font-size: 18px;
+                background-color: #eee;
+                border: none;
+                border-radius: 10px;
+            }
+        }
+        
+        #company_list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .company-block {
+                display: flex;
+                justify-content: flex-start;
+                gap: 20px;
+    
+                img {
+                    height: 100px;
+                }
+    
+                p {
+                    margin: 0;
+    
+                    &.company-room {
+                        font-weight: 900;
+        
+                    }
+        
+                    &.company-name {
+                        font-size: 6vw;
+                        font-weight: 900;
+                    }
+        
+                    &.company-activity {
+                        
+                    }
+                }
+            }
         }
 
     }
@@ -85,14 +393,33 @@ body {
         align-items: center;
         height: 100%;
         width: 100%;
+        z-index: 1;
 
-        img {
+        #map_img, 
+        #map_img_mobile {
             height: 100%;
+        }
+
+        #map_img {
+            display: none;
+
+            @media screen and (min-width: $xs) {
+                display: block;
+            }
+        }
+
+        #map_img_mobile {
+            display: none;
+            width: 100%;
+
+            @media screen and (max-width: $xs) {
+                display: block;
+            }
         }
 
        span {
             position: absolute;
-            opacity: .6;
+            opacity: .8;
 
             &#flowerId_1 {
                 top: var(--flower-1-top);
@@ -112,19 +439,38 @@ body {
             &.active {
                 opacity: 1;
             }
+
+            img {
+                height: 120px;
+            }
         }
     }
 
     #sidebar_content {
-        right: -40%;
+        position: absolute;
+        bottom: -170%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         display: none;
         align-items: baseline;
         justify-content: flex-end;
-        gap: 4%;
-        width: 30%;
-        font-family: T-Star Pro;
+        gap: 2%;
+        height: 95%;
+        width: 100%;
+        font-family: T-Star Pro, sans-serif;
         border-left: 1px solid #c0c0c0;
-        transition: 0.7s;
+        transition: 2s;
+        z-index: 4;
+        background-color: #FFF;
+        
+        @media screen and (min-width: $xs) {
+            right: -40%;
+            bottom: 0;
+            gap: 4%;
+            width: 30%;
+        }
 
         > * {
             padding: 0 10%;
@@ -132,8 +478,15 @@ body {
 
         #icon_openCompany {
             position: absolute;
-            top: 55px;
+            top: 50px;
+            align-self: center;
             opacity: .7;
+            transform: rotate(270deg);
+            
+            @media screen and (min-width: $xs) {
+                align-self: initial;
+                transform: initial;
+            }
 
             &:hover {
                 opacity: 1;
@@ -143,13 +496,35 @@ body {
 
         h2 {
             margin: 0;
-            font-size: 4vw;
+            font-size: 11vw;
             font-weight: 900;
+            
+            @media screen and (min-width: $xs) {
+                font-size: 4vw;
+            }
         }
 
         #company_activity {
             margin: 10px 0 0 0;
-            font-size: 2vw;
+            font-size: 6vw;
+
+            @media screen and (min-width: $xs) {
+                font-size: 2vw;
+            }
+        }
+
+        #company_infos {
+            display: flex;
+            gap: 20px;
+
+            p {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 10px;
+                background-color: #EEEBEB;
+                border-radius: 10px;
+            }
         }
         
         h3 {
@@ -164,6 +539,11 @@ body {
             display: flex;
             align-items: center;
             gap: 10px;
+
+            #company_contactMail,
+            #company_contactPhone {
+                margin: 0;
+            }
         }
 
         img {
@@ -173,7 +553,12 @@ body {
 
         &.open {
             display: flex;
-            right: 0;
+            bottom: 0;
+            transition: 2s;
+            
+            @media screen and (min-width: $xs) {
+                right: 0;
+            }
         }
     }
 }

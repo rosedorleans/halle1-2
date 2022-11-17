@@ -27,6 +27,31 @@ class CompanyController extends AbstractController
     }
 
     /**
+     * @Route("/company/all", name="all_company")
+     */
+    public function showAll(CompanyRepository $companyRepository): Response
+    {
+        $data = [];
+        foreach($companyRepository->findAll() as $company){
+            $data[]=[
+                "id" => $company->getId(),
+                "name" => $company->getName(),
+                "activity" => $company->getActivity(),
+                "description" => $company->getDescription(),
+                "room" => $company->getRoom(),
+                "location" => $company->getLocation(),
+                "hours" => $company->getHours(),
+                "contact" => $company->getContact(),
+                "photo" => $company->getPhoto(),
+                "flower" => $company->getFlower(),
+                "positionTop" => $company->getPositionTop(),
+                "positionLeft" => $company->getPositionLeft()
+            ];
+        }
+        return $this->json(['companies' => $data]);
+    }
+
+    /**
      * @Route("company/{id}", name="company_show", methods={"GET"})
      */
     public function show(Company $company): Response
@@ -37,8 +62,11 @@ class CompanyController extends AbstractController
                 "name" => $company->getName(),
                 "activity" => $company->getActivity(),
                 "description" => $company->getDescription(),
+                "room" => $company->getRoom(),
                 "location" => $company->getLocation(),
+                "hours" => $company->getHours(),
                 "contact" => $company->getContact(),
+                "flower" => $company->getFlower(),
                 "positionTop" => $company->getPositionTop(),
                 "positionLeft" => $company->getPositionLeft()
             ];

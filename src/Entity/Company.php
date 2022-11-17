@@ -24,10 +24,22 @@ class Company
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $room = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $location = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $hours = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $contact = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $photo = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $flower = null;
 
     #[ORM\Column(length: 255)]
     private ?string $position_top = null;
@@ -76,6 +88,18 @@ class Company
         return $this;
     }
 
+    public function getRoom(): ?string
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?string $room): self
+    {
+        $this->room = $room;
+
+        return $this;
+    }
+
     public function getLocation(): ?string
     {
         return $this->location;
@@ -88,6 +112,18 @@ class Company
         return $this;
     }
 
+    public function getHours(): ?string
+    {
+        return $this->hours;
+    }
+
+    public function setHours(string $hours): self
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
     public function getContact(): ?string
     {
         return $this->contact;
@@ -96,6 +132,30 @@ class Company
     public function setContact(?string $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getFlower(): ?string
+    {
+        return $this->flower;
+    }
+
+    public function setFlower(?string $flower): self
+    {
+        $this->flower = $flower;
 
         return $this;
     }
