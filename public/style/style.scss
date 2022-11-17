@@ -1,0 +1,179 @@
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    .sidebar {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        z-index: 2;
+        background-color: #FFF;
+    }
+
+    #sidebar {
+        width: 100%;
+        position: absolute;
+        bottom: 10%;
+        display: flex;
+        justify-content: center;
+        background-color: #FFF;
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: #FFF;
+            border-radius: 20px;
+            width: 50%;
+            place-content: center;
+        }
+
+        #nav_home,
+        #nav_map {
+            padding: 10px;
+            opacity: .7;
+            
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+
+        #icon_settings {
+            position: absolute;
+            bottom: 60px;
+        }
+    }
+
+    #page_home {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 130px;
+        font-family: T-Star Pro;
+        z-index: 1;
+        
+        h1 {
+            margin: 10% 0 0 0;
+            font-size: 8vw;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1.5vw;
+            width: 70%;
+        }
+
+    }
+
+    #page_map {
+        position: absolute;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        img {
+            height: 100%;
+        }
+
+       span {
+            position: absolute;
+            opacity: .6;
+
+            &#flowerId_1 {
+                top: var(--flower-1-top);
+                left: var(--flower-1-left);
+            }
+
+            &#flowerId_2 {
+                top: var(--flower-2-top);
+                left: var(--flower-2-left);
+            }
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+            }
+
+            &.active {
+                opacity: 1;
+            }
+        }
+    }
+
+    #sidebar_content {
+        right: -40%;
+        display: none;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 4%;
+        width: 30%;
+        font-family: T-Star Pro;
+        border-left: 1px solid #c0c0c0;
+        transition: 0.7s;
+
+        > * {
+            padding: 0 10%;
+        }
+
+        #icon_openCompany {
+            position: absolute;
+            top: 55px;
+            opacity: .7;
+
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 4vw;
+            font-weight: 900;
+        }
+
+        #company_activity {
+            margin: 10px 0 0 0;
+            font-size: 2vw;
+        }
+        
+        h3 {
+            font-weight: 900;
+        }
+
+        #company_description {
+            margin: 0;
+        }
+
+        .company-contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        img {
+            height: 135px;
+            padding-bottom: 15%;
+        }
+
+        &.open {
+            display: flex;
+            right: 0;
+        }
+    }
+}
